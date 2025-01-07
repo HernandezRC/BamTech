@@ -11,13 +11,10 @@ namespace StargateAPI.Business.Commands
         public required string Name { get; set; } = string.Empty;
     }
 
-    public class CreatePersonPreProcessor : IRequestPreProcessor<CreatePerson>
+    public class CreatePersonPreProcessor(StargateContext context) : IRequestPreProcessor<CreatePerson>
     {
-        private readonly StargateContext _context;
-        public CreatePersonPreProcessor(StargateContext context)
-        {
-            _context = context;
-        }
+        private readonly StargateContext _context = context;
+
         public Task Process(CreatePerson request, CancellationToken cancellationToken)
         {
             var person = _context.People.AsNoTracking().FirstOrDefault(z => z.Name == request.Name);
@@ -28,14 +25,10 @@ namespace StargateAPI.Business.Commands
         }
     }
 
-    public class CreatePersonHandler : IRequestHandler<CreatePerson, CreatePersonResult>
+    public class CreatePersonHandler(StargateContext context) : IRequestHandler<CreatePerson, CreatePersonResult>
     {
-        private readonly StargateContext _context;
+        private readonly StargateContext _context = context;
 
-        public CreatePersonHandler(StargateContext context)
-        {
-            _context = context;
-        }
         public async Task<CreatePersonResult> Handle(CreatePerson request, CancellationToken cancellationToken)
         {
 
@@ -44,9 +37,9 @@ namespace StargateAPI.Business.Commands
                    Name = request.Name
                 };
 
-                await _context.People.AddAsync(newPerson);
+                await _context.People.AddAsync(newPerson, cancellationToken);
 
-                await _context.SaveChangesAsync();
+                await _context.SaveChangesAsync(cancellationToken);
 
                 return new CreatePersonResult()
                 {
