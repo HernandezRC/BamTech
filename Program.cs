@@ -26,6 +26,13 @@ if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
+
+    //Adding in, making sure we are still in Development, to create the Database
+    //Referncing: https://learn.microsoft.com/en-us/ef/core/managing-schemas/migrations/applying?tabs=dotnet-core-cli#apply-migrations-at-runtime
+    using var scope = app.Services.CreateScope();
+    var db = scope.ServiceProvider.GetRequiredService<StargateContext>();
+    db.Database.Migrate();
+    scope.Dispose();
 }
 
 app.UseHttpsRedirection();

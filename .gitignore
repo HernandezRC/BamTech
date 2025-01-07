@@ -1,0 +1,10 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/.vs/StargateAPI/FileContentIndex
+/.vs/StargateAPI/DesignTimeBuild
+/.vs/StargateAPI/config/applicationhost.config
+/.vs/StargateAPI/v17/.suo
+*.json
+/.vs/StargateAPI/v17/DocumentLayout.json
