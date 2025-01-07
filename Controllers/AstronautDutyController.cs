@@ -8,13 +8,9 @@ namespace StargateAPI.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    public class AstronautDutyController : ControllerBase
+    public class AstronautDutyController(IMediator mediator) : ControllerBase
     {
-        private readonly IMediator _mediator;
-        public AstronautDutyController(IMediator mediator)
-        {
-            _mediator = mediator;
-        }
+        private readonly IMediator _mediator = mediator;
 
         [HttpGet("{name}")]
         public async Task<IActionResult> GetAstronautDutiesByName(string name)

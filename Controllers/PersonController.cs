@@ -9,13 +9,9 @@ namespace StargateAPI.Controllers
    
     [ApiController]
     [Route("[controller]")]
-    public class PersonController : ControllerBase
+    public class PersonController(IMediator mediator) : ControllerBase
     {
-        private readonly IMediator _mediator;
-        public PersonController(IMediator mediator)
-        {
-            _mediator = mediator;
-        }
+        private readonly IMediator _mediator = mediator;
 
         [HttpGet("")]
         public async Task<IActionResult> GetPeople()

@@ -11,13 +11,10 @@ namespace StargateAPI.Business.Queries
 
     }
 
-    public class GetPeopleHandler : IRequestHandler<GetPeople, GetPeopleResult>
+    public class GetPeopleHandler(StargateContext context) : IRequestHandler<GetPeople, GetPeopleResult>
     {
-        public readonly StargateContext _context;
-        public GetPeopleHandler(StargateContext context)
-        {
-            _context = context;
-        }
+        public readonly StargateContext _context = context;
+
         public async Task<GetPeopleResult> Handle(GetPeople request, CancellationToken cancellationToken)
         {
             var result = new GetPeopleResult();
@@ -34,7 +31,7 @@ namespace StargateAPI.Business.Queries
 
     public class GetPeopleResult : BaseResponse
     {
-        public List<PersonAstronaut> People { get; set; } = new List<PersonAstronaut> { };
+        public List<PersonAstronaut> People { get; set; } = [];
 
     }
 }
