@@ -45,7 +45,7 @@ namespace StargateAPI.Migrations
                     b.HasIndex("PersonId")
                         .IsUnique();
 
-                    b.ToTable("AstronautDetail");
+                    b.ToTable("AstronautDetail", (string)null);
                 });
 
             modelBuilder.Entity("StargateAPI.Business.Data.AstronautDuty", b =>
@@ -75,7 +75,7 @@ namespace StargateAPI.Migrations
 
                     b.HasIndex("PersonId");
 
-                    b.ToTable("AstronautDuty");
+                    b.ToTable("AstronautDuty", (string)null);
                 });
 
             modelBuilder.Entity("StargateAPI.Business.Data.Person", b =>
@@ -90,7 +90,7 @@ namespace StargateAPI.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Person");
+                    b.ToTable("Person", (string)null);
                 });
 
             modelBuilder.Entity("StargateAPI.Business.Data.AstronautDetail", b =>
