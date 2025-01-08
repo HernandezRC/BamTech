@@ -9,7 +9,9 @@ namespace StargateAPI.Controllers
         {
             var httpResponse = new ObjectResult(response)
             {
-                StatusCode = response.ResponseCode
+                //Response can absolutely be null here despite Visual Studio saying otherwise.
+                //Case in point, the unit test that was failing because it would break here because response was null.
+                StatusCode = response?.ResponseCode
             };
             return httpResponse;
         }
