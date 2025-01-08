@@ -2,6 +2,9 @@ using Microsoft.EntityFrameworkCore;
 using StargateAPI.Business.Commands;
 using StargateAPI.Business.Data;
 
+//CQRS - Command Query Responsibility Segregation
+
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
