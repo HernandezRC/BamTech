@@ -80,30 +80,7 @@ namespace StargateAPI.Migrations
                 name: "IX_AstronautDuty_PersonId",
                 table: "AstronautDuty",
                 column: "PersonId");
-
-            //My attempt at creating initial data. Apparently EF9 has UseSeeding method already but this is EF8.
-            //This may work if I create a new migration but didnt feel that was necessary for this.
-            //References: https://learn.microsoft.com/en-us/ef/core/modeling/data-seeding
-
-            migrationBuilder.InsertData(
-                table: "Person",
-                columns: ["Id", "Name"],
-                values: new object[,]
-                {
-                    { 1, "John Doe" },
-                    { 2, "Jane Doe" }
-                });
-            
-            migrationBuilder.InsertData(
-                table: "AstronautDetail",
-                columns: ["Id", "CareerEndDate", "CareerStartDate", "CurrentDutyTitle", "CurrentRank", "PersonId"],
-                values: [1, null, new DateTime(2025, 1, 6, 20, 32, 40, 63, DateTimeKind.Local).AddTicks(8287), "Commander", "1LT", 1]);
-
-            migrationBuilder.InsertData(
-                table: "AstronautDuty",
-                columns: ["Id", "DutyEndDate", "DutyStartDate", "DutyTitle", "PersonId", "Rank"],
-                values: [1, null, new DateTime(2025, 1, 6, 20, 32, 40, 63, DateTimeKind.Local).AddTicks(8392), "Commander", 1, "1LT"]);
-        }
+}
 
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
